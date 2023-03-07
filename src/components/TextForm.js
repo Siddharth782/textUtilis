@@ -16,7 +16,7 @@ export default function TextForm(props) {
     }
 
     const func = (text) => {
-        let arr = text.split(" ")
+        let arr = text.split(/\s+/) // going to split on basis of white spaces i.e. spaces or next line button...
 
         return arr.filter(function (geeks) {
             return geeks !== "";
@@ -42,10 +42,12 @@ export default function TextForm(props) {
     }
 
     const copied = () => {
-        var text = document.getElementById("myBox");
-        text.select();
-        navigator.clipboard.writeText(text.value);
-        document.getSelection().removeAllRanges();
+        // var texty = document.getElementById("myBox"); 
+        // text.select();
+        // navigator.clipboard.writeText(texty.value); 
+        // document.getSelection().removeAllRanges();
+
+        navigator.clipboard.writeText(text) // only this line is enough
         props.textalert("Text copied", "success")
     }
 
