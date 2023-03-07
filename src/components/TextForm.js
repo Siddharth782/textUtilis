@@ -14,6 +14,14 @@ export default function TextForm(props) {
 
     }
 
+    const func = (text) => {
+        let arr = text.split(" ")
+
+        return arr.filter(function (geeks) {
+            return geeks !== "";
+        })
+    }
+
     const handleOnChange = (event) => {
         // console.log("On Change");
         setText(event.target.value)
@@ -47,15 +55,15 @@ export default function TextForm(props) {
             <h1>Enter text below</h1>
             <div className="mb-3">
                 <label htmlFor="myBox" className="form-label my-2">{props.heading}</label>
-                <textarea className="form-control my-2" style={myStyle} id="myBox" placeholder='Enter your text here' value={text} onChange={handleOnChange} rows="5"></textarea>
-                <button className="btn btn-primary mr-2" onClick={handleUpClick} >Convert to UpperCase</button>
-                <button className="btn btn-primary mx-1" onClick={handleDownClick} >Convert to LowerCase</button>
-                <button className="btn btn-primary mx-1" onClick={cleared}>Clear Text</button>
-                <button className="btn btn-primary mx-1" onClick={copied}>Copy Text</button>
+                <textarea className="form-control mx-1  my-1" style={myStyle} id="myBox" placeholder='Enter your text here' value={text} onChange={handleOnChange} rows="5"></textarea>
+                <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick} >Convert to UpperCase</button>
+                <button className="btn btn-primary mx-1 my-1" onClick={handleDownClick} >Convert to LowerCase</button>
+                <button className="btn btn-primary mx-1 my-1" onClick={cleared}>Clear Text</button>
+                <button className="btn btn-primary mx-1 my-1" onClick={copied}>Copy Text</button>
             </div>
             <div className="my-3">
                 <h2>Text Summary</h2>
-                <p>This sentence has {text.split(" ").length} and {text.length} </p>
+                <p>This sentence has {(func(text)).length} and {text.length} </p>
                 <h2 className='my-2'>Preview</h2>
                 <p>{text}</p>
             </div>
