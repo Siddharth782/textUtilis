@@ -10,6 +10,8 @@ export default function TextForm(props) {
         // console.log("UpperCase button was sent");
         let newText = text.toUpperCase();
         setText(newText)
+        props.textalert("Text converted to uppercase", "success")
+
     }
 
     const handleOnChange = (event) => {
@@ -20,9 +22,11 @@ export default function TextForm(props) {
     const handleDownClick = () => {
         let newertext = text.toLocaleLowerCase();
         setText(newertext);
+        props.textalert("Text converted to lowercase", "success")
     }
 
     const cleared = () => {
+        props.textalert("Text cleared", "success")
         setText('');
     }
 
@@ -30,12 +34,14 @@ export default function TextForm(props) {
         var text = document.getElementById("myBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.textalert("Text copied", "success")
     }
 
     const myStyle = {
         backgroundColor: props.mode === 'light' ? 'white' : 'grey',
-        color:props.mode === 'dark' ? 'white' : 'black'
+        color: props.mode === 'dark' ? 'white' : 'black'
     }
+
     return (
         <div className={`container text-${props.mode === 'light' ? 'dark' : 'light'}`}>
             <h1>Enter text below</h1>

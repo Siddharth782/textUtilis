@@ -5,7 +5,6 @@ import TextForm from './components/TextForm';
 import About from './components/About';
 import React, { useState } from 'react'
 
-
 function App() {
   const [mode, setMode] = useState('light')
   const [alert, setAlert] = useState(null)
@@ -15,6 +14,9 @@ function App() {
       msg: message,
       type: type
     })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
   }
 
   const toggleMode = () => {
@@ -22,11 +24,19 @@ function App() {
       setMode('dark')
       document.body.style.backgroundColor = 'blue'
       showAlert("Dark Mode has been enabled", "success")
+      // document.title = "Title- Dark Mode" // to change the title of page
+      // setInterval(() => {
+      //   document.title = "Text Utilis is amazing"
+      // }, 1500);
+      // setInterval(() => {
+      //   document.title = "Install Text Utilis"
+      // }, 2000);
     }
     else {
       setMode('light')
       document.body.style.backgroundColor = 'white'
       showAlert("Light Mode has been enabled", "success")
+      // document.title = "Title- Light Mode"
     }
   }
 
@@ -34,7 +44,7 @@ function App() {
     <>
       <Navbar title="TextUtilis" aboutText="About TextUtils" mode={mode} toggler={toggleMode} />
       <Alert alert={alert} />
-      <TextForm heading="Enter your text to analyze" mode={mode} />
+      <TextForm textalert = {showAlert} heading="Enter your text to analyze" mode={mode} />
       {/* <About mode={mode}/> */}
     </>
   );
