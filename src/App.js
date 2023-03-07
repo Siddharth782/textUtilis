@@ -46,11 +46,31 @@ function App() {
     }
   }
 
+  // const pressed = (col) =>{
+  //     document.body.style.backgroundColor = col
+  // }
+
+  const oth = (col) => {
+    document.body.style.backgroundColor = col
+  }
+
+  const removeClasses = () => {
+    document.body.classList.remove('bg-primary')
+    document.body.classList.remove('bg-warning')
+    document.body.classList.remove('bg-danger')
+  }
+
+  const thirds = (cols) => {
+    removeClasses(); // we need to do this to remove the previous classes that have been added on when they r being clicked, coz it would display only that one which is the first one in the class 
+    document.body.classList.add('bg-'+cols);
+  }
+
   return (
+
     <>
 
       <Router>
-        <Navbar title="TextUtilis" aboutText="About TextUtils" mode={mode} toggler={toggleMode} />
+        <Navbar title="TextUtilis" aboutText="About TextUtils" /*{others={oth}}*/ third = {thirds} mode={mode} toggler={toggleMode} />
         <Alert alert={alert} />
         <Routes>
 

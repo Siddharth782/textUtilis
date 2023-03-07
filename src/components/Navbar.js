@@ -4,6 +4,18 @@ import { Link } from 'react-router-dom'
 
 
 export default function Navbar(props) {
+
+    const yellowpressed = () =>{
+        document.body.style.backgroundColor = 'yellow'
+    }
+    const redpressed = () =>{
+        document.body.style.backgroundColor = 'red'
+    }
+    const greenpressed = () =>{
+        document.body.style.backgroundColor = 'green'
+    }
+
+
     return (
         // {} allows us to use Javascript,` allow to use template literal, $ aloows us to pass values in there
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
@@ -22,10 +34,30 @@ export default function Navbar(props) {
                             <Link className="nav-link" to="/about">{props.aboutText}</Link>
                         </li>
                     </ul>
-                    <form className="d-flex">
+                    {/* <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-danger" type="submit">Search</button>
-                    </form>
+                    </form> */}
+
+                    {/* 1st method */}
+                    <button className="btn btn-success mx-1" style={{height:'25px'}} onClick={greenpressed}></button>
+                    <button className="btn btn-warning mx-1" style={{height:'25px'}} onClick={yellowpressed}></button>
+                    <button className="btn btn-danger mx-1" style={{height:'25px'}} onClick={redpressed}></button>
+
+
+                    {/* 2nd method  */}
+                    {/* <button className="btn btn-warning mx-1" onClick={()=>{props.others('yellow')}} style={{height:'25px'}}></button>  */}
+                    {/* we gave a function inside onClick not a function call */}
+                    {/* <button className="btn btn-success mx-1" onClick={()=>{props.others('green')}} style={{height:'25px'}}></button> */}
+                    {/* <button className="btn btn-danger mx-1" onClick={()=>{props.others('red')}} style={{height:'25px'}}></button> */}
+
+
+
+                    {/* 3rd method */}
+                    {/* <div className="mx-1" style={{height:'25px', width:'25px', backgroundColor:'red', cursor:'pointer'}} onClick={()=>props.third('danger')}></div> */}
+                    {/* <div className="mx-1" style={{height:'25px', width:'25px', backgroundColor:'green',cursor:'pointer'}} onClick={()=>props.third('success')}></div> */}
+                    {/* <div className="mx-1" style={{height:'25px', width:'25px', backgroundColor:'yellow',cursor:'pointer'}} onClick={()=>props.third('warning')}></div> */}
+
                 </div>
                 <div className={`form-check form-switch mx-1 text-${props.mode === 'light' ? 'dark' : 'light'}`}>
                     <input className="form-check-input" onClick={props.toggler} type="checkbox" role="switch" id="flexSwitchCheckDefault" />

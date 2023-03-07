@@ -6,10 +6,11 @@ export default function TextForm(props) {
     const [text, setText] = useState("") // we can update value of text using setText and the intial value of text is what is inside useState.
     // upper one is a hook, hooks basically allow us to use functionalities of class based components without making class
 
+    const [intialtext, setintialtext] = useState("");
     const handleUpClick = () => {
         // console.log("UpperCase button was sent");
         let newText = text.toUpperCase();
-        setText(newText)
+        setintialtext(newText)
         props.textalert("Text converted to uppercase", "success")
 
     }
@@ -25,28 +26,31 @@ export default function TextForm(props) {
     const handleOnChange = (event) => {
         // console.log("On Change");
         setText(event.target.value)
+        setintialtext(event.target.value)
     }
 
     const handleDownClick = () => {
         let newertext = text.toLocaleLowerCase();
-        setText(newertext);
+        setintialtext(newertext);
         props.textalert("Text converted to lowercase", "success")
     }
 
     const cleared = () => {
         props.textalert("Text cleared", "success")
-        setText('');
+        setintialtext('');
+        setText('')
     }
 
     const copied = () => {
         var text = document.getElementById("myBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges();
         props.textalert("Text copied", "success")
     }
 
     const myStyle = {
-        backgroundColor: props.mode === 'light' ? 'white' : 'grey',
+        backgroundColor: props.mode === 'light' ? 'white' : '#0a776c',
         color: props.mode === 'dark' ? 'white' : 'black'
     }
 
@@ -56,16 +60,16 @@ export default function TextForm(props) {
             <div className="mb-3">
                 <label htmlFor="myBox" className="form-label my-2">{props.heading}</label>
                 <textarea className="form-control mx-1  my-1" style={myStyle} id="myBox" placeholder='Enter your text here' value={text} onChange={handleOnChange} rows="5"></textarea>
-                <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick} >Convert to UpperCase</button>
-                <button className="btn btn-primary mx-1 my-1" onClick={handleDownClick} >Convert to LowerCase</button>
-                <button className="btn btn-primary mx-1 my-1" onClick={cleared}>Clear Text</button>
-                <button className="btn btn-primary mx-1 my-1" onClick={copied}>Copy Text</button>
+                <button disabled={text.length === 0}  className="btn btn-primary mx-1 my-1" onClick={handleUpClick} >Convert to UpperCase</button>
+                <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleDownClick} >Convert to LowerCase</button>
+                <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={cleared}>Clear Text</button>
+                <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={copied}>Copy Text</button>
             </div>
             <div className="my-3">
                 <h2>Text Summary</h2>
                 <p>This sentence has {(func(text)).length} and {text.length} </p>
                 <h2 className='my-2'>Preview</h2>
-                <p>{text}</p>
+                <p>{intialtext}</p>
             </div>
         </div>
     )

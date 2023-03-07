@@ -2,30 +2,32 @@ import React, { useState } from 'react'
 
 export default function About(props) {
 
-    const [text, setText] = useState("En")
-    const [COLOUR, setCOLOUR] = useState("Black")
-    const [BGCOLOUR, setBGCOLOUR] = useState("White")
-    const [ABORDER, setABORDER] = useState("")
-    const toggle = () => {
-        if (text === "En") {
-            setText("Dis");
-            setBGCOLOUR("Black")
-            setCOLOUR("White")
-            setABORDER("1px solid white")
-        }
-        else {
-            setText("En")
-            setBGCOLOUR("White")
-            setCOLOUR("Black")
-            setABORDER("")
-        }
-    }
+    // not in final
 
-    let mystyle = { // it's a js object
-        color: COLOUR,
-        backgroundColor: BGCOLOUR,
-        border: ABORDER
-    }
+    // const [text, setText] = useState("En")
+    // const [COLOUR, setCOLOUR] = useState("Black")
+    // const [BGCOLOUR, setBGCOLOUR] = useState("White")
+    // const [ABORDER, setABORDER] = useState("")
+    // const toggle = () => {
+    //     if (text === "En") {
+    //         setText("Dis");
+    //         setBGCOLOUR("Black")
+    //         setCOLOUR("White")
+    //         setABORDER("1px solid white")
+    //     }
+    //     else {
+    //         setText("En")
+    //         setBGCOLOUR("White")
+    //         setCOLOUR("Black")
+    //         setABORDER("")
+    //     }
+    // }
+
+    // let mystyle = { // it's a js object
+    //     color: COLOUR,
+    //     backgroundColor: BGCOLOUR,
+    //     border: ABORDER
+    // }
 
     // other way
     // const [myStyle, setMyStyle] = useState({
@@ -55,10 +57,17 @@ export default function About(props) {
 
     // }
 
+
+    let mystyle = {
+        color: props.mode === 'dark'?'white':'black',
+        backgroundColor: props.mode === 'dark'?'#042743':'white'
+    }
+    // final mystyle
+
     return (
         <>
-            <div className={`container text-${props.mode === 'light' ? 'dark' : 'light'}`} style={mystyle}>
-                <h1 className={`container text-${props.mode === 'light' ? 'dark' : 'light'}`}>About Us</h1>
+            <div className="container">
+                <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>About Us</h1>
                 <div className="accordion" id="accordionExample">
 
                     <div className="accordion-item mt-2" >
